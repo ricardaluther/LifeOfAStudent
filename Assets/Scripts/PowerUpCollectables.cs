@@ -5,6 +5,7 @@ using UnityEngine.SocialPlatforms;
 
 public class PowerUpCollectables : MonoBehaviour
 {
+    
     [SerializeField] 
     private float _speed = 2f;
 
@@ -19,6 +20,14 @@ public class PowerUpCollectables : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
         {
+            if (this.name.Contains("Bafog"))
+            {
+                if (other.CompareTag("Student"))
+                {
+                    other.GetComponent<Student>().GetBafog();
+                    Destroy(this.gameObject);
+                }
+            }
             if (other.CompareTag("Student"))
             {
                 other.GetComponent<Student>().ActivatePowerUp();

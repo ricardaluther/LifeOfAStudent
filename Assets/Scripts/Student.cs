@@ -26,6 +26,10 @@ public class Student : MonoBehaviour
     [SerializeField]
     private bool _usePowerIdea = false;
 
+    [SerializeField] private bool _sleepy = false;
+
+    [SerializeField] private bool _drunk = false;
+
    
     //private float _colorChannel = 1f;
     //private MaterialPropertyBlock _mpb;
@@ -36,10 +40,16 @@ public class Student : MonoBehaviour
     [SerializeField]
     private float _powerUpTimeOut = 7f;
 
+    [SerializeField] private float _sleepTimeOut = 0.1f;
+
+    [SerializeField] private float _drunkTimeOut = 2f;
+
 
     void Start()
     {
         _usePowerIdea = false;
+        _sleepy = false;
+        _drunk = false;
         // if (_mpb == null)
         //{
         //   _mpb = new MaterialPropertyBlock();
@@ -61,6 +71,8 @@ public class Student : MonoBehaviour
     {
         //remove one from our lives
         _lives -= 1;
+
+        
         //_colorChannel -= 0.5f;
         //_mpb.SetColor("_Color",new Color(r: _colorChannel,g: 0, b: _colorChannel, a:1f));
         //this.GetComponent<Renderer>().SetPropertyBlock(_mpb);
@@ -79,20 +91,39 @@ public class Student : MonoBehaviour
             }
         }
     }
+
+    public void GetBafog()
+    {
+        _lives += 1;
+        Debug.LogError("You received bafog!");
+    }
     void PlayerMovement()
     {
-        //move player up and down
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
-        
-        transform.GetChild(0).Rotate(new Vector3(0,horizontalInput* Time.deltaTime,0), Space.World);
-        Vector3 playerTranslate = new Vector3(1f * horizontalInput * _speed * Time.deltaTime,
-            1f * verticalInput * _speed * Time.deltaTime,
-            0f);
-        transform.Translate(playerTranslate);
+        //move player up and down
+        if (!_sleepy && !_drunk)
+        {
 
+            transform.GetChild(0).Rotate(new Vector3(0, horizontalInput * Time.deltaTime, 0), Space.World);
+            Vector3 playerTranslate = new Vector3(1f * horizontalInput * _speed * Time.deltaTime,
+                1f * verticalInput * _speed * Time.deltaTime,
+                0f);
+            transform.Translate(playerTranslate);
+        }
+        else if (_drunk)
+        {
+            
+            Vector3 playerTranslate = new Vector3(-1f * horizontalInput * _speed * Time.deltaTime,
+                -1f * verticalInput * _speed * Time.deltaTime,
+                0f);
+            transform.Translate(playerTranslate);
+          
+        }
+      
     }
-
+    
+    
     void PlayerBoundaries()
     {
         // set boundaries for y coordinate
@@ -126,7 +157,7 @@ public class Student : MonoBehaviour
 
     void Study()
     {
-        // if we press space bar, than we want to instantiate the vaccineprefab and allow spawning 
+        // if we press space bar, than we want to instantiate the pencilprefab and allow spawning 
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > _timeToStudy)
         {
             _timeToStudy = Time.time + _studyRate;
@@ -153,5 +184,29 @@ public class Student : MonoBehaviour
     {
         yield return new WaitForSeconds(_powerUpTimeOut);
         _usePowerIdea = false;
+    }
+
+    public void StartSleeping()
+    {
+        _sleepy = true;
+        StartCoroutine(WakeUp());
+    }
+
+    IEnumerator WakeUp()
+    {
+        yield return new WaitForSeconds(_sleepTimeOut);
+        _sleepy = false;
+    }
+
+    public void StartDrinking()
+    {
+        _drunk = true;
+        StartCoroutine(SoberUp());
+    }
+
+    IEnumerator SoberUp()
+    {
+        yield return new WaitForSeconds(_drunkTimeOut);
+        _drunk = false;
     }
 }

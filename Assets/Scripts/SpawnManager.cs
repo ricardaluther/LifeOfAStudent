@@ -7,18 +7,23 @@ public class SpawnManager : MonoBehaviour
 {
     [SerializeField] 
     public GameObject _assignmentPrefab;
-    [SerializeField] private GameObject _colaPrefab;
+    
+    [SerializeField] 
+    private GameObject _colaPrefab;
+
+    [SerializeField] private GameObject _bafogPrefab;
+    
 
     [Range(0f, 1f)] 
     [SerializeField] 
     private float _normalAssignmentSpawnChance = 0f;
-    [Range(0f, 1f)] 
-    [SerializeField]
-    private List<float> _assignmentSpawnChances;
+
     [Range(0f, 1f)]
     [SerializeField] 
     private float _chanceModifier = 0.1f;
     [SerializeField] private List<GameObject> _assignmentPrefabs;
+
+    [SerializeField] private List<GameObject> _powerUpPrefabs;
     
 
     [SerializeField] private float _delay = 2f;
@@ -58,7 +63,7 @@ public class SpawnManager : MonoBehaviour
     {
         while (_spawningOn)
         {
-            Instantiate(_colaPrefab, new Vector3(Random.Range(-8f, 8f), 7f, 0f), Quaternion.identity, this.transform);
+            Instantiate(_powerUpPrefabs[SelectAssignmentIndex()], new Vector3(Random.Range(-8f, 8f), 7f, 0f), Quaternion.identity, this.transform);
             yield return new WaitForSeconds(_powerUpSpawnRate);
 
         }

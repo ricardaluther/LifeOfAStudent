@@ -8,7 +8,7 @@ public class Assignment : MonoBehaviour
 {
     
     [SerializeField]
-    private float _deadlineSpeed = 3f;
+    private float _deadlineSpeed = 5f;
     
     void Update()
     {
@@ -17,8 +17,9 @@ public class Assignment : MonoBehaviour
         if (name.Contains("ReadingAssignment"))
         {
             transform.Translate(Vector3.right*Random.Range(1f,.1f)*2*_deadlineSpeed * Time.deltaTime);
-            transform.Rotate(0f,5f,0f, Space.World);
+            transform.Rotate(0f,7f,0f, Space.World);
         }
+      
         //if the position of assigment y > x, then respawn it at top
         if (transform.position.y < -5.5f) 
         {
