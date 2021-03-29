@@ -26,6 +26,8 @@ public class Student : MonoBehaviour
     [SerializeField]
     private bool _usePowerIdea = false;
 
+    [SerializeField] private bool _useBafog = false;
+
     [SerializeField] private bool _sleepy = false;
 
     [SerializeField] private bool _drunk = false;
@@ -92,11 +94,7 @@ public class Student : MonoBehaviour
         }
     }
 
-    public void GetBafog()
-    {
-        _lives += 1;
-        Debug.LogError("You received bafog!");
-    }
+ 
     void PlayerMovement()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -134,22 +132,22 @@ public class Student : MonoBehaviour
                 0f);
         }
 
-        else if (transform.position.y < -4.5f)
+        else if (transform.position.y < -5.9f)
         {
             transform.position = new Vector3(transform.position.x,
-                y: -4.5f,
+                y: -5.9f,
                 z: 0f);
         }
         // set boundaries for x coordinate
-        if (transform.position.x < -11.3495f)
+        if (transform.position.x < -10.28f)
         {
-            transform.position = new Vector3(x: 11.04375f,
+            transform.position = new Vector3(x: 10.28f,
                 transform.position.y,
                 0f);
         }
-        else if (transform.position.x > 11.44986f)
+        else if (transform.position.x > 10.28f)
         {
-            transform.position = new Vector3(x: -11.13391f,
+            transform.position = new Vector3(x: -10.28f,
                 y: transform.position.y,
                 z: 0f);
         }
@@ -161,29 +159,52 @@ public class Student : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > _timeToStudy)
         {
             _timeToStudy = Time.time + _studyRate;
-            if (!_usePowerIdea)
+            if (!_usePowerIdea && !_useBafog)
             {
 
                 Debug.Log("space bar pressed");
-                Instantiate(_weaponPrefab, transform.position + new Vector3(x: 0f, y: 0.7f, z: 0), Quaternion.identity);
+                Instantiate(_weaponPrefab, transform.position + new Vector3(x: 0.5f, y: 0.7f, z: 0), Quaternion.identity);
             }
             else if (_usePowerIdea)
             {
-                Instantiate(_powerIdeaPrefab,transform.position + new Vector3(x: 0f, y: 0.7f, z: 0), Quaternion.identity); 
+              
+                Instantiate(_powerIdeaPrefab,transform.position + new Vector3(x: 0f, y: 0.9f, z: 0), Quaternion.Euler(-89, 0, 270));
+            ;
+                
+            }
+            else if (_useBafog)
+            {
+                Instantiate(_weaponPrefab,transform.position + new Vector3(x: 0.5f, y: 0.7f, z: 0), Quaternion.identity);
+                Instantiate(_weaponPrefab,transform.position + new Vector3(x: -0.5f, y: 0.7f, z: 0), Quaternion.identity);
             }
         }   
     }
 
     public void ActivatePowerUp()
     {
-        _usePowerIdea = true;
+            _usePowerIdea = true;
+            Debug.Log("U received coke");
+            StartCoroutine(DeactivatePowerUp());
+    }
+
+    public void GetBafog()
+    {
+        _useBafog = true;
+        Debug.Log("U received Bafog");
         StartCoroutine(DeactivatePowerUp());
+    }
+
+    public void EatDonut()
+    {
+        _lives += 1;
+        Debug.Log("Yummyyy!");
     }
 
     IEnumerator DeactivatePowerUp()
     {
         yield return new WaitForSeconds(_powerUpTimeOut);
         _usePowerIdea = false;
+        _useBafog = false;
     }
 
     public void StartSleeping()

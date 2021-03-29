@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 285142890036947073}
   m_Layer: 0
   m_Name: Cola
-  m_TagString: PowerUp
+  m_TagString: Cola
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -13,12 +13,16 @@ public class Weapon : MonoBehaviour
     void Update()
     {
         //moves the vaccine up
-        transform.Translate(Vector3.up * _studySpeed * Time.deltaTime);
+        if (name.Contains("Pencil"))
+        {
+            transform.Translate(Vector3.up * _studySpeed * Time.deltaTime);
+        }
+
         //if the position of our vaccine drop y > 7, then destroy the drop
         if (name.Contains("PowerIdea"))
         {
             //transform.
-            transform.Translate(Vector3.up * 20* Time.deltaTime);
+            transform.Translate(Vector3.forward * 20* Time.deltaTime);
         }
         if (transform.position.y > 7)
         {
