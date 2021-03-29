@@ -1,0 +1,42 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Random = UnityEngine.Random;
+
+public class Assignment : MonoBehaviour
+{
+    
+    [SerializeField]
+    private float _deadlineSpeed = 3f;
+    
+    void Update()
+    {
+        //moves assignment down
+        transform.Translate(Vector3.down * _deadlineSpeed * Time.deltaTime);
+        //if the position of assigment y > x, then respawn it at top
+        if (transform.position.y < -5.5f) 
+        {
+            transform.position = new Vector3(Random.Range(-8f, 8f), 7f, z:0f);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // if the object we collide with is the student
+        //damage student or destroy it
+        if (other.CompareTag("Student"))
+        {
+            other.GetComponent<Student>().Damage();
+            Destroy(this.gameObject);
+        }
+        else if (other.CompareTag("Weapon"))
+        {
+            if (!other.name.Contains("PowerIdea"))
+            {
+                Destroy(other.gameObject);
+            }
+            Destroy(this.gameObject);
+        }
+    }
+}
