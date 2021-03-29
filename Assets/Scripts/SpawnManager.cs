@@ -5,18 +5,26 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    [SerializeField]
-    public GameObject _assignmentPrefab;
-
-    [SerializeField]
-    private GameObject _colaPrefab;
-
-    [SerializeField]
-    private float _delay = 2f;
-
     [SerializeField] 
-    private float _powerUpSpawnRate = 5f;
+    public GameObject _assignmentPrefab;
+    [SerializeField] private GameObject _colaPrefab;
+
+    [Range(0f, 1f)] 
+    [SerializeField] 
+    private float _normalAssignmentSpawnChance = 0f;
+    [Range(0f, 1f)] 
+    [SerializeField]
+    private List<float> _assignmentSpawnChances;
+    [Range(0f, 1f)]
+    [SerializeField] 
+    private float _chanceModifier = 0.1f;
+    [SerializeField] private List<GameObject> _assignmentPrefabs;
     
+
+    [SerializeField] private float _delay = 2f;
+
+    [SerializeField] private float _powerUpSpawnRate = 5f;
+
     private bool _spawningOn = true;
 
     void Start()
@@ -32,11 +40,13 @@ public class SpawnManager : MonoBehaviour
         while (_spawningOn)
         {
             // Instantiate assignment at random location and setParent to SpawnManager
-            Instantiate(_assignmentPrefab, new Vector3(Random.Range(-8f,8f),7f,0f),Quaternion.identity, this.transform);
-            yield return new WaitForSeconds(_delay);    
+            Instantiate(_assignmentPrefabs[SelectAssignmentIndex()], new Vector3(Random.Range(-8f, 8f), 7f, 0f), Quaternion.identity,
+                this.transform);
+            yield return new WaitForSeconds(_delay);
         }
+
         Destroy(this.gameObject);
-        
+
     }
 
     public void onPlayerDeath()
@@ -48,9 +58,28 @@ public class SpawnManager : MonoBehaviour
     {
         while (_spawningOn)
         {
-            Instantiate(_colaPrefab, new Vector3(Random.Range(-8f,8f),7f,0f),Quaternion.identity, this.transform);
+            Instantiate(_colaPrefab, new Vector3(Random.Range(-8f, 8f), 7f, 0f), Quaternion.identity, this.transform);
             yield return new WaitForSeconds(_powerUpSpawnRate);
 
         }
     }
+
+    private int SelectAssignmentIndex()
+    {
+        int assignmentIndex = 0;
+        if (_normalAssignmentSpawnChance < Random.Range(0f, 1f))
+        {
+            _normalAssignmentSpawnChance += _chanceModifier;
+            assignmentIndex =0;
+        }
+        else
+        {
+            assignmentIndex = Random.Range(1, _assignmentPrefabs.Count);
+        }
+
+        return assignmentIndex;
+    }
+    
 }
+
+

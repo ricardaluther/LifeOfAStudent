@@ -14,10 +14,16 @@ public class Assignment : MonoBehaviour
     {
         //moves assignment down
         transform.Translate(Vector3.down * _deadlineSpeed * Time.deltaTime);
+        if (name.Contains("ReadingAssignment"))
+        {
+            transform.Translate(Vector3.right*Random.Range(1f,.1f)*2*_deadlineSpeed * Time.deltaTime);
+            transform.Rotate(0f,5f,0f, Space.World);
+        }
         //if the position of assigment y > x, then respawn it at top
         if (transform.position.y < -5.5f) 
         {
             transform.position = new Vector3(Random.Range(-8f, 8f), 7f, z:0f);
+            
         }
     }
 
