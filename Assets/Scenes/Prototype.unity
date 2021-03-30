@@ -166,10 +166,10 @@ MonoBehaviour:
   _powerUpPrefabs:
   - {fileID: 1101709272191128344, guid: 04992a74e4b9cbf4a9db56ba9aac6231, type: 3}
   - {fileID: 3606133399834142600, guid: 9078e54aa49394448b42c3b3ffc1c0d7, type: 3}
-  - {fileID: 1101709272191128344, guid: 04992a74e4b9cbf4a9db56ba9aac6231, type: 3}
+  - {fileID: 5054057890462406360, guid: 9f3656cc1c9be4746aa07098b6e12752, type: 3}
   - {fileID: 4674981548193818637, guid: a1a854601b1615348b6f1a574c223935, type: 3}
   _delay: 2
-  _powerUpSpawnRate: 5
+  _powerUpSpawnRate: 7
 --- !u!4 &549139925
 Transform:
   m_ObjectHideFlags: 0
@@ -570,6 +570,7 @@ MonoBehaviour:
   _useBafog: 0
   _sleepy: 0
   _drunk: 0
+  _caffeinated: 0
   _spawnManager: {fileID: 549139924}
   _powerUpTimeOut: 7
   _sleepTimeOut: 1
@@ -645,7 +646,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1361913218}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.28, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 759329902}

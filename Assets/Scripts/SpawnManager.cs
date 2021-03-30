@@ -26,7 +26,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private List<GameObject> _powerUpPrefabs;
     
 
-    [SerializeField] private float _delay = 2f;
+    [SerializeField] private float _delay = 4f;
 
     [SerializeField] private float _powerUpSpawnRate = 5f;
 
@@ -65,7 +65,7 @@ public class SpawnManager : MonoBehaviour
         {
             Instantiate(_powerUpPrefabs[SelectAssignmentIndex()], new Vector3(Random.Range(-8f, 8f), 7f, 0f), Quaternion.identity, this.transform);
             yield return new WaitForSeconds(_powerUpSpawnRate);
-
+          
         }
     }
 

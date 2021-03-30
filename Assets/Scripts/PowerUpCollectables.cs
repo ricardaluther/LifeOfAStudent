@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.SocialPlatforms;
 using Random = UnityEngine.Random;
 
@@ -16,8 +17,7 @@ public class PowerUpCollectables : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
-        if (name.Contains("Cola"))
-        {
+        if (name.Contains("Cola") || name.Contains("cup")){
             transform.Rotate(0f,3f,0f, Space.World);
         }
         if (name.Contains("Donut"))
@@ -25,6 +25,12 @@ public class PowerUpCollectables : MonoBehaviour
             transform.Translate(Vector3.right*Random.Range(1f,.1f)*2*_speed * Time.deltaTime);
             transform.Rotate(0f,7f,0f, Space.World);
         }
+
+        if (name.Contains("cup"))
+        {
+            transform.Rotate(0f,3f,-2f, Space.Self);
+        }
+
         if (transform.position.y < -6f)
         {
             Destroy(this.gameObject);
@@ -47,6 +53,11 @@ public class PowerUpCollectables : MonoBehaviour
             else if (this.CompareTag("Donut") && other.CompareTag("Student"))
             {
                 other.GetComponent<Student>().EatDonut();
+                Destroy(this.gameObject);
+            }
+            else if (this.CompareTag("cup") && other.CompareTag("Student"))
+            {
+                other.GetComponent<Student>().DrinkCoffee();
                 Destroy(this.gameObject);
             }
         }

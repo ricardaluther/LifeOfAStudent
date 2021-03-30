@@ -32,6 +32,8 @@ public class Student : MonoBehaviour
 
     [SerializeField] private bool _drunk = false;
 
+    [SerializeField] private bool _caffeinated;
+
    
     //private float _colorChannel = 1f;
     //private MaterialPropertyBlock _mpb;
@@ -52,6 +54,7 @@ public class Student : MonoBehaviour
         _usePowerIdea = false;
         _sleepy = false;
         _drunk = false;
+        _caffeinated = false;
         // if (_mpb == null)
         //{
         //   _mpb = new MaterialPropertyBlock();
@@ -100,7 +103,7 @@ public class Student : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
         //move player up and down
-        if (!_sleepy && !_drunk)
+        if (!_sleepy && !_drunk && !_caffeinated)
         {
 
             transform.GetChild(0).Rotate(new Vector3(0, horizontalInput * Time.deltaTime, 0), Space.World);
@@ -118,6 +121,19 @@ public class Student : MonoBehaviour
             transform.Translate(playerTranslate);
           
         }
+        else if (_caffeinated)
+        {
+            transform.GetChild(0).Rotate(new Vector3(0, horizontalInput * Time.deltaTime, 0), Space.World);
+            Vector3 playerTranslate = new Vector3(1f * horizontalInput *2* _speed * Time.deltaTime,
+                1f * verticalInput * 2*_speed * Time.deltaTime,
+                0f);
+            transform.Translate(playerTranslate);
+        }
+        else if (_sleepy)
+        {
+            
+        }
+        
       
     }
     
@@ -200,11 +216,18 @@ public class Student : MonoBehaviour
         Debug.Log("Yummyyy!");
     }
 
+    public void DrinkCoffee()
+    {
+        _caffeinated = true;
+        Debug.Log("You feel the rush of the caffeine!");
+        StartCoroutine(DeactivatePowerUp());
+    }
     IEnumerator DeactivatePowerUp()
     {
         yield return new WaitForSeconds(_powerUpTimeOut);
         _usePowerIdea = false;
         _useBafog = false;
+        _caffeinated = true;
     }
 
     public void StartSleeping()
