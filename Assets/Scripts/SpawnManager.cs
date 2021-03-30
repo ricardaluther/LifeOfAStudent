@@ -26,9 +26,9 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private List<GameObject> _powerUpPrefabs;
     
 
-    [SerializeField] private float _delay = 4f;
+    [SerializeField] private float _delay = 8f;
 
-    [SerializeField] private float _powerUpSpawnRate = 5f;
+    [SerializeField] private float _powerUpSpawnRate = 7f;
 
     private bool _spawningOn = true;
 

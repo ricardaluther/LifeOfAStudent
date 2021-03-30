@@ -33,6 +33,7 @@ public class Wine : MonoBehaviour
                 Destroy(other.gameObject);
             }
             Destroy(this.gameObject);
+            GameObject.FindWithTag("Student").GetComponent<Student>().RelayScore(1);
         }
     }
 }

@@ -22,13 +22,11 @@ public class PowerUpCollectables : MonoBehaviour
         }
         if (name.Contains("Donut"))
         {
-            transform.Translate(Vector3.right*Random.Range(1f,.1f)*2*_speed * Time.deltaTime);
-            transform.Rotate(0f,7f,0f, Space.World);
+            transform.Translate(Vector3.right*Random.Range(3f,-3f)*2*_speed * Time.deltaTime);
         }
-
         if (name.Contains("cup"))
         {
-            transform.Rotate(0f,3f,-2f, Space.Self);
+            transform.Rotate(0f,-.4f,0f,Space.Self);
         }
 
         if (transform.position.y < -6f)

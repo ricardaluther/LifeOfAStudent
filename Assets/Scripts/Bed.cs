@@ -8,8 +8,7 @@ public class Bed : MonoBehaviour
      
     [SerializeField]
     private float _deadlineSpeed = 5f;
-
-    [SerializeField] private bool _sleepy = false;
+    
 
 
     // Update is called once per frame
@@ -35,6 +34,7 @@ public class Bed : MonoBehaviour
                 Destroy(other.gameObject);
             }
             Destroy(this.gameObject);
+            GameObject.FindWithTag("Student").GetComponent<Student>().RelayScore(1);
         }
     }
 }

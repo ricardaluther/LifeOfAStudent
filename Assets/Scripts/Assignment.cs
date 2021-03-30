@@ -35,6 +35,7 @@ public class Assignment : MonoBehaviour
         if (other.CompareTag("Student"))
         {
             other.GetComponent<Student>().Damage();
+            GameObject.FindWithTag("Student").GetComponent<Student>().RelayLives(1);
             Destroy(this.gameObject);
         }
         else if (other.CompareTag("Weapon"))
@@ -43,7 +44,12 @@ public class Assignment : MonoBehaviour
             {
                 Destroy(other.gameObject);
             }
+            GameObject.FindWithTag("Student").GetComponent<Student>().RelayScore(1);
             Destroy(this.gameObject);
+            if (this.name.Contains("ReadingAssignemnt"))
+            {
+                GameObject.FindWithTag("Student").GetComponent<Student>().RelayScore(3);
+            }
         }
     }
 }
