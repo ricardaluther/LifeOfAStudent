@@ -11,11 +11,11 @@ public class PowerUpCollectables : MonoBehaviour
     
     [SerializeField] 
     private float _speed = 2f;
-
-   
+    
 
     void Update()
     {
+        //here the movements of the PowerUps are defined. All move down, but each of them has a specific pattern of speed and rotation
         transform.Translate(Vector3.down * _speed * Time.deltaTime);
         if (name.Contains("Cola") || name.Contains("cup")){
             transform.Rotate(0f,3f,0f, Space.World);
@@ -28,16 +28,16 @@ public class PowerUpCollectables : MonoBehaviour
         {
             transform.Rotate(0f,-.4f,0f,Space.Self);
         }
-
+        // when the PowerUps are no longer visible they get destroyed
         if (transform.position.y < -6f)
         {
             Destroy(this.gameObject);
         }
     }
-
+    // here the specific collision pattern are specified. For descriptio see Student.
+    // After colliding with the student the powerups are destroyed
     void OnTriggerEnter(Collider other)
         {
-            
             if (this.CompareTag("Cola") && other.CompareTag("Student"))
             {
                 other.GetComponent<Student>().ActivatePowerUp();

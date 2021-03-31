@@ -150,12 +150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89878df56ac490b42b1cd5ff7818594f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _assignmentPrefab: {fileID: 2651948807513443524, guid: 4903ec897bbb8d94e8352cb224a666f1,
-    type: 3}
-  _colaPrefab: {fileID: 4674981548193818637, guid: a1a854601b1615348b6f1a574c223935,
-    type: 3}
-  _bafogPrefab: {fileID: 1101709272191128344, guid: 04992a74e4b9cbf4a9db56ba9aac6231,
-    type: 3}
   _normalAssignmentSpawnChance: 0
   _chanceModifier: 0.1
   _assignmentPrefabs:
@@ -168,7 +162,7 @@ MonoBehaviour:
   - {fileID: 5054057890462406360, guid: 9f3656cc1c9be4746aa07098b6e12752, type: 3}
   - {fileID: 3606133399834142600, guid: 9078e54aa49394448b42c3b3ffc1c0d7, type: 3}
   - {fileID: 4674981548193818637, guid: a1a854601b1615348b6f1a574c223935, type: 3}
-  _delay: 2
+  _delay: 3
   _powerUpSpawnRate: 7
 --- !u!4 &549139925
 Transform:
@@ -415,7 +409,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: You have been extmatriculated! Effective immediately.
+  m_Text: You have been exmatriculated! Effective immediately.
 --- !u!222 &863826908
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -861,7 +855,7 @@ Transform:
   m_GameObject: {fileID: 1283203203}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 2.2}
-  m_LocalScale: {x: 25, y: 14, z: 1}
+  m_LocalScale: {x: 27, y: 14, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -979,23 +973,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ba761c3d0d2cb0439f7840c32f0156a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
-  _weaponPrefab: {fileID: 6312608502663415354, guid: c74c89d76d9c19b4b9adcec14d94617c,
-    type: 3}
-  _powerIdeaPrefab: {fileID: 773615879266872891, guid: 2224c8725b686ad49b699c915cc6c22e,
-    type: 3}
-  _studyRate: 0.4
-  _timeToStudy: 0
-  _lives: 5
-  _usePowerIdea: 1
+  _usePowerIdea: 0
   _useBafog: 0
   _sleepy: 0
   _drunk: 0
   _caffeinated: 0
-  _spawnManager: {fileID: 549139924}
-  _powerUpTimeOut: 7
-  _sleepTimeOut: 1
+  _speed: 5
+  _studyRate: 0.4
+  _timeToStudy: 0
+  _lives: 5
+  _weaponPrefab: {fileID: 6312608502663415354, guid: c74c89d76d9c19b4b9adcec14d94617c,
+    type: 3}
+  _powerIdeaPrefab: {fileID: 773615879266872891, guid: 2224c8725b686ad49b699c915cc6c22e,
+    type: 3}
+  _powerUpTimeOut: 5
+  _sleepTimeOut: 3
   _drunkTimeOut: 5
+  _spawnManager: {fileID: 549139924}
   _uiManager: {fileID: 958256887}
 --- !u!54 &1361913220
 Rigidbody:
@@ -1164,6 +1158,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 29, y: -23}
+  m_AnchoredPosition: {x: 10, y: -23}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
