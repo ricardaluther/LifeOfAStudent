@@ -45,11 +45,11 @@ public class Student : MonoBehaviour
     
     // time limits of powerups and negative effects of being hit by enemy (bed&wine)
     [SerializeField]
-    private float _powerUpTimeOut = 7f;
+    private float _powerUpTimeOut = 5f;
 
-    [SerializeField] private float _sleepTimeOut = 0.1f;
+    [SerializeField] private float _sleepTimeOut = 3f;
 
-    [SerializeField] private float _drunkTimeOut = 2f;
+    [SerializeField] private float _drunkTimeOut = 4f;
 
     //managers
     [SerializeField]
